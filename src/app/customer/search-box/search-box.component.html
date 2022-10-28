@@ -1,1 +1,35 @@
-<p>search-box works!</p>
+<div id="search-el" >
+    <div id="search-drop" class="dropdown" >
+      <button id="location-btn"  type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+        <span class="glyphicon glyphicon-map-marker"  aria-hidden="expandmap"></span></button>
+        <ul id="search-menu" class="dropdown-menu" [class.hidden]="!expandmap" >
+          <li><button  type="button" class="close pull-right">&times;</button></li>
+          <li class="visible-xs-inline-block">
+            <label ><input id="searchinput" type="text" #search class="form-control" value="Bengaluru, Karnataka, India" placeholder="Search Shops by location" autocorrect="off" autocapitalize="off" spellcheck="off" >
+            </label >
+            <button id="drop-search-btn" type="button" class="btn btn-primary " aria-label="Right Align">
+             <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+            </button>
+          </li>
+          <!-- <li><p id="diatext"> Search within diameter : </p><select id="dia"  class="form-control" > <option *ngFor="let dist of distances" [ngValue]="dist.values"> {{ dist.name }} </option></select>
+           </li> -->
+          <p id="serve"> Currently we serve only Bangalore location.</p>
+          <li>
+            <div id="searchMap">
+              <!-- <agm-map  #map [latitude]="latitude" [longitude]="longitude" [disableDefaultUI]="false" [zoomControl]="false"  [zoom]="zoom">
+                      <agm-marker (dragEnd)="markerDragEnd($event)" [latitude]="latitude" [longitude]="longitude" [markerDraggable]="isdragable"></agm-marker>
+              </agm-map> -->
+            </div>
+          </li>
+        </ul>
+        <div id="searchfield" class="hidden-xs">
+          <input #search2 id="searchbox" type="text" class="form-control hidden-xs"  placeholder=" Search Shops by location" value="Bangalore, Karnataka, India" autocorrect="off" autocapitalize="off"  >
+          <span >
+              <button  id="search-btn" type="button" class="btn btn-default hidden-xs" aria-label="Right Align">
+               <span class="glyphicon glyphicon-search "  aria-hidden="true"></span>
+              </button>
+          </span>
+        </div>
+      </div>
+  </div>
+  

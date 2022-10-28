@@ -12,6 +12,14 @@ import { JwtModule } from "@auth0/angular-jwt";
 import { SearchBoxComponent } from './customer/search-box/search-box.component';
 import { LoginButtonComponent } from './customer/login-button/login-button.component';
 import { LogoutButtonComponent } from './customer/logout-button/logout-button.component';
+import { FormsComponent } from './forms/forms.component';
+import {MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS, MatDialogRef} from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTabsModule} from '@angular/material/tabs';
+import {FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ResetPasswordComponent } from './common-component/reset-password/reset-password.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -23,14 +31,25 @@ import { LogoutButtonComponent } from './customer/logout-button/logout-button.co
     FooterComponent,
     SearchBoxComponent,
     LoginButtonComponent,
-    LogoutButtonComponent
+    LogoutButtonComponent,
+    FormsComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    JwtModule.forRoot({})
+    JwtModule.forRoot({}),
+    MatDialogModule, BrowserAnimationsModule,
+    MatTabsModule,ReactiveFormsModule, FormsModule, MatFormFieldModule, MatInputModule
+    
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: MatDialogRef,
+      useValue: {}
+    }
+  ],
+  bootstrap: [AppComponent],
+  exports: [FormsComponent]
 })
 export class AppModule { }

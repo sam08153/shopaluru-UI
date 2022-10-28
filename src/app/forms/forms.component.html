@@ -1,0 +1,152 @@
+<div id="logform" role="tabpanel">
+    <button type="button" class="close" (click)='onCloseCancel()' data-dismiss="modal" aria-label="Close">
+       <span aria-hidden="true">&times;</span>
+     </button>
+    <mat-tab-group>
+    <mat-tab label="Log In">
+      <div class="body">
+      <div id="titleh">
+            <label class="control-label" id="logininfo" >Login to chat with Merchants. don't have an account? SignUp above!</label>
+      </div>
+      <div *ngIf="loginFlag" class="alert alert-info small" >
+        <p>You have entered wrong credentials.</p>
+      </div>
+      <form id="loginFormy" [formGroup]="loginForm" method="post" (ngSubmit)="onLoigin()" novalidate>
+        <div class="form-group" required>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <span class="glyphicon glyphicon-envelope"></span>
+              </div>
+              <mat-form-field>
+                  <input maxlength="240" matInput placeholder="Email" formControlName="email">
+                    <mat-error *ngIf="loginForm.controls['email'].hasError('pattern')">
+                      Please enter a valid email address
+                    </mat-error>
+                    <mat-error *ngIf="loginForm.controls['email'].hasError('required')">
+                      Email is required
+                    </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="form-group" required>
+          <div class="input-group">
+             <div class="input-group-addon">
+              <span class="glyphicon glyphicon-lock"></span>
+             </div>
+            <mat-form-field>
+              <input maxlength="50" matInput class="mat-input" type="password" placeholder="Password" formControlName="password" >
+              <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
+                Password is required
+              </mat-error>
+              <mat-error *ngIf="loginForm.controls['password'].hasError('minlength') && (loginForm.controls['password'].dirty )">
+                  Password must be minimum of 5 characters
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+        </div>
+      </form>
+    </div>
+    </mat-tab>
+    <mat-tab label="Sign Up">
+    <div class="body">
+      <div id="titleh">
+            <label class="control-label" id="logininfo" >New to Shopaluru, Signup to chat with Merchants.</label>
+      </div>
+      <div *ngIf="RegloginError" class="alert alert-info small" >
+        You have entered wrong credentials. you already have suppliyer account, Use the same Password to login.
+      </div>
+        <div *ngIf="RegistrationFlag" class="alert alert-info small" >
+          email address already exist. Please login or reset password incase forgot.
+        </div>
+      <form id="singupForm" method="post" [formGroup]="signupForm" (ngSubmit)="onRegister()"novalidate>
+        <div class="form-group" required>
+            <div class="input-group">
+             <div class="input-group-addon">
+            <span class="glyphicon glyphicon-user"></span>
+             </div>
+             <div id="name">
+               <table class="user-name" cellspacing="0">
+                 <tr>
+                   <td>
+                     <mat-form-field class="user-name">
+                       <input maxlength="120" matInput placeholder="First name"  formControlName="first_name"  >
+                       <mat-error *ngIf="signupForm.controls['first_name'].hasError('required')">
+                         First Name is required
+                       </mat-error>
+                     </mat-form-field>
+                   </td>
+                   <td>
+                     <mat-form-field class="user-name">
+                       <input maxlength="120" matInput placeholder="Last Name" formControlName="last_name" >
+                       <mat-error *ngIf="signupForm.controls['last_name'].hasError('required')">
+                         Last Name is required
+                       </mat-error>
+                     </mat-form-field>
+                   </td>
+                 </tr>
+               </table>
+             </div>
+          </div>
+        </div>
+        <div class="form-group" required>
+          <div class="input-group">
+             <div class="input-group-addon">
+            <span class="glyphicon glyphicon-envelope"></span>
+             </div>
+             <mat-form-field>
+                 <input maxlength="240" matInput placeholder="Email" formControlName="email" >
+                   <mat-error *ngIf="signupForm.controls['email'].hasError('pattern')">
+                     Please enter a valid email address
+                   </mat-error>
+                   <mat-error *ngIf="signupForm.controls['email'].hasError('required')">
+                     Email is required
+                   </mat-error>
+           </mat-form-field>
+
+          </div>
+        </div>
+        <div class="form-group" required>
+          <div class="input-group">
+             <div class="input-group-addon">
+              <span class="glyphicon glyphicon-lock"></span>
+            </div>
+            <mat-form-field>
+              <input maxlength="50" matInput class="mat-input" type="password" placeholder="Password" formControlName="password">
+              <mat-error *ngIf="signupForm.controls['password'].hasError('required')">
+                Password is required
+              </mat-error>
+              <mat-error *ngIf="signupForm.controls['password'].hasError('minlength') && (signupForm.controls['password'].dirty || signupForm.controls['password'].pristine)">
+                  Password must be minimum of 5 characters
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="form-group ">
+          <div class="input-group">
+            <div class="input-group-addon">
+              <span class="glyphicon glyphicon-phone"></span>
+            </div>
+            <mat-form-field >
+              <span matPrefix>+91 &nbsp;</span>
+              <input type="number" matInput placeholder="Phone Number" formControlName="phone_number">
+              <mat-error *ngIf="signupForm.controls['phone_number'].hasError('required')">
+                Phone Number is required
+              </mat-error>
+          </mat-form-field>
+          </div>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Singup</button>
+        <div style="margin-left: 40px;">
+          <p>by signing above you agree to the <a [routerLink]="['/terms']">Terms</a></p>
+        </div>
+      </form>
+    </div>
+    </mat-tab>
+    <mat-tab label="Forgot Password">
+      <app-reset-password></app-reset-password>
+    </mat-tab>
+  </mat-tab-group>
+</div>
